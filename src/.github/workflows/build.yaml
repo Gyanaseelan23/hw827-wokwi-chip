@@ -1,0 +1,32 @@
+name: Build Wokwi Chip
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install WASI SDK
+        run: |
+          wget https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-20/wasi-sdk-20.0-linux.tar.gz
+          tar xf wasi-sdk-20.0-linux.tar.gz
+
+      - name: Compile chip to WASM
+        run: |
+          ./wasi-sdk-20.0/bin/clang \
+            --target=wasm32-wasi \
+            -nostartfiles \
+            -Wl,--no-entry \
+            -Wl,--export-all \
+            -o chip.wasm \
+            src/main.c
+
+      - name: Upload chip.wasm
+        uses: actions/upload-artifact@v3
+        with:
+          name: chip
+          path: chip.wasm
