@@ -1,0 +1,15 @@
+{
+  "name": "hw827-pulse-sensor",
+  "author": "yourname",
+  "pins": ["VCC", "GND", "SIGNAL"],
+  "controls": [
+    {
+      "type": "slider",
+      "label": "BPM",
+      "attribute": "bpm",
+      "min": 40,
+      "max": 200,
+      "value": 75
+    }
+  ]
+}
