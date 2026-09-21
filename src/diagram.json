@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "author": "you",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-v1", "id": "esp" },
+    { "type": "chip-hw827-pulse-sensor", "id": "sensor" }
+  ],
+  "connections": [
+    ["esp:3V3", "sensor:VCC", "red"],
+    ["esp:GND", "sensor:GND", "black"],
+    ["esp:36", "sensor:SIGNAL", "green"]
+  ],
+  "dependencies": {
+    "chip-hw827-pulse-sensor": "github:yourusername/my-hw827-chip@1.0.0"
+  }
+}
